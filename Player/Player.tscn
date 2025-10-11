@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://vcwd04l1skbv"]
+[gd_scene load_steps=37 format=3 uid="uid://vcwd04l1skbv"]
 
 [ext_resource type="Texture2D" uid="uid://bei7x67psb4c4" path="res://assets/Main Characters/Mask Dude.png" id="1_3qydi"]
 [ext_resource type="Script" uid="uid://6lwpqb3e6rmq" path="res://Scripts/player.gd" id="1_q3lat"]
@@ -7,8 +7,10 @@
 [ext_resource type="AudioStream" uid="uid://ba2hxqf376lg" path="res://assets/Sounds/Jump.ogg" id="4_8g4oa"]
 [ext_resource type="Texture2D" uid="uid://ckaore37h130l" path="res://assets/Menu/UI/lifebar-1.png" id="4_dm7nj"]
 [ext_resource type="Texture2D" uid="uid://53mh0rvj54b1" path="res://assets/Menu/UI/lifebar-2.png" id="5_3mea3"]
+[ext_resource type="Texture2D" uid="uid://dan1h0xsyry1q" path="res://assets/Main Characters/Mask.png" id="5_3nb2p"]
 [ext_resource type="AudioStream" uid="uid://bk01bmd5p2v58" path="res://assets/Sounds/Hit.ogg" id="5_6ysni"]
 [ext_resource type="Script" uid="uid://btrwoms04r1yx" path="res://Scripts/StateMachine/stateMachine.gd" id="6_6ysni"]
+[ext_resource type="Shader" uid="uid://bi6t40o14uve6" path="res://shaders/transitionShader.gdshader" id="7_8sa4y"]
 [ext_resource type="Script" uid="uid://pc5pj3c5wl7v" path="res://Scripts/StateMachine/idle.gd" id="7_vlldt"]
 [ext_resource type="Script" uid="uid://d3lxaaf4bnib6" path="res://Scripts/StateMachine/in_air.gd" id="8_j23h2"]
 [ext_resource type="Script" uid="uid://k51vf007xvpg" path="res://Scripts/StateMachine/moving.gd" id="9_0j2ni"]
@@ -175,6 +177,49 @@ texture = ExtResource("4_dm7nj")
 texture = ExtResource("5_3mea3")
 texture_margin_left = 10.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3nb2p"]
+shader = ExtResource("7_8sa4y")
+shader_parameter/circle_size = 0.0
+shader_parameter/screen_width = 640.0
+shader_parameter/screen_height = 480.0
+
+[sub_resource type="Animation" id="Animation_8sa4y"]
+resource_name = "Transition_Anim"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionColorRect:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.5]
+}
+
+[sub_resource type="Animation" id="Animation_3nb2p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionColorRect:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d7xyo"]
+_data = {
+&"RESET": SubResource("Animation_3nb2p"),
+&"Transition_Anim": SubResource("Animation_8sa4y")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0j2ni"]
 size = Vector2(20, 26)
 
@@ -202,9 +247,9 @@ script = ExtResource("3_tok1r")
 [node name="PlayerGUI" type="CanvasLayer" parent="."]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PlayerGUI"]
-offset_top = 23.0
+offset_top = 31.0
 offset_right = 58.0
-offset_bottom = 55.0
+offset_bottom = 63.0
 
 [node name="TextureRect" type="TextureRect" parent="PlayerGUI/HBoxContainer"]
 layout_mode = 2
@@ -214,16 +259,48 @@ texture = ExtResource("4_3mea3")
 layout_mode = 2
 label_settings = SubResource("LabelSettings_ddoul")
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="PlayerGUI"]
+offset_left = 71.0
+offset_top = 32.0
+offset_right = 129.0
+offset_bottom = 64.0
+
+[node name="TextureRect" type="TextureRect" parent="PlayerGUI/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("5_3nb2p")
+
+[node name="Lifes" type="Label" parent="PlayerGUI/HBoxContainer2"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_ddoul")
+
 [node name="ProgressBar" type="ProgressBar" parent="PlayerGUI"]
 offset_left = 4.0
-offset_right = 113.0
-offset_bottom = 39.0
+offset_right = 154.0
+offset_bottom = 40.0
 theme_override_styles/background = SubResource("StyleBoxTexture_7v5gs")
 theme_override_styles/fill = SubResource("StyleBoxTexture_8sa4y")
 max_value = 10.0
 step = 1.0
 value = 1.0
 show_percentage = false
+
+[node name="TransitionColorRect" type="ColorRect" parent="PlayerGUI"]
+process_mode = 3
+process_priority = 1
+material = SubResource("ShaderMaterial_3nb2p")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerGUI"]
+process_mode = 3
+libraries = {
+&"": SubResource("AnimationLibrary_d7xyo")
+}
 
 [node name="RaycastDmg" type="Node2D" parent="."]
 

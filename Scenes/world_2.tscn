@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://cde5a3xl6vehe"]
+[gd_scene load_steps=12 format=4 uid="uid://cde5a3xl6vehe"]
 
 [ext_resource type="Texture2D" uid="uid://cx1qsqa4qwsus" path="res://assets/Parallax/parallax-00.png" id="1_4i21e"]
 [ext_resource type="Texture2D" uid="uid://d02l7nnnfajd3" path="res://assets/Parallax/parallax-01.png" id="2_6uuwl"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cbmb5cipyhb2u" path="res://assets/Terrain/Terrain (16x16).png" id="6_hpuos"]
 [ext_resource type="PackedScene" uid="uid://vcwd04l1skbv" path="res://Player/Player.tscn" id="7_6uuwl"]
 [ext_resource type="PackedScene" uid="uid://drbtqqb1l3xvs" path="res://Traps/saw.tscn" id="8_tmly8"]
+[ext_resource type="PackedScene" uid="uid://esgytss3prnn" path="res://Traps/fall_damage.tscn" id="9_wa2kw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_21kcj"]
 texture = ExtResource("6_hpuos")
@@ -411,6 +412,9 @@ position = Vector2(47, -15)
 
 [node name="dmgPlayer" parent="Saw3/trueSaw" index="1"]
 dmg = 3
+
+[node name="FallDamage" parent="." instance=ExtResource("9_wa2kw")]
+position = Vector2(-427, 485)
 
 [editable path="Saw"]
 [editable path="Saw2"]
