@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://b43gdrt7656a"]
+
+[ext_resource type="Texture2D" uid="uid://ba2jcasi4kyem" path="res://assets/Traps/Platforms/Grey Off.png" id="1_64b0s"]
+[ext_resource type="Script" uid="uid://7sqf1x66ekfy" path="res://Scripts/platform.gd" id="1_w7mls"]
+
+[sub_resource type="Curve2D" id="Curve2D_w7mls"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 26, -4, 0, 0, 0, 0, 80, -3, 0, 0, 0, 0, 116, -4, 0, 0, 0, 0, 143, -1, 0, 0, 0, 0, 172, -1, 0, 0, 0, 0, 193, -4, 0, 0, 0, 0, 216, -2, 0, 0, 0, 0, 26, -4)
+}
+point_count = 8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7mls"]
+size = Vector2(33, 5)
+
+[node name="Path2D" type="Path2D"]
+light_mask = 5
+curve = SubResource("Curve2D_w7mls")
+script = ExtResource("1_w7mls")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(102.11714, -3.6143649)
+rotation = -0.027770637
+scale = Vector2(-1, 1)
+progress = 76.12343
+
+[node name="Platform" type="CharacterBody2D" parent="."]
+position = Vector2(101.580925, -3.5994701)
+scale = Vector2(1.5, 1.5)
+collision_layer = 5
+collision_mask = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform"]
+texture = ExtResource("1_64b0s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_w7mls")

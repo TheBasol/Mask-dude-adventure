@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cenpghno1h84e"]
+
+[ext_resource type="Script" uid="uid://dbuav0kafq1ll" path="res://Scripts/dmg_player.gd" id="1_4biyh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gbjxt"]
+size = Vector2(31, 25)
+
+[node name="dmgPlayer" type="Area2D" groups=["AreaPlayer"]]
+collision_layer = 2
+script = ExtResource("1_4biyh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 2.5)
+shape = SubResource("RectangleShape2D_gbjxt")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
