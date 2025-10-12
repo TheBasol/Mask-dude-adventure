@@ -6,6 +6,7 @@ var fruits := 0 :
 		fruits = val
 		if player != null:
 			player.updateUiFruits()
+			$AudioStreamPlayer.volume_db = linear_to_db(0.5)
 			$AudioStreamPlayer.play()
 var lifes: int :
 	set(val):

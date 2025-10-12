@@ -1,14 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdwh8ec1evjuc"]
+[gd_scene load_steps=7 format=3 uid="uid://cdwh8ec1evjuc"]
 
 [ext_resource type="Script" uid="uid://krbj0o8pcgn2" path="res://Scripts/main_menu.gd" id="1_7vrkn"]
 [ext_resource type="FontFile" uid="uid://6kevsfysjxx2" path="res://assets/Fonts/NokiaCellphoneFC.ttf" id="2_fu7sn"]
 [ext_resource type="Texture2D" uid="uid://dpi8bqqmoiw8h" path="res://assets/Background/Green.png" id="2_jix8l"]
+[ext_resource type="Script" uid="uid://b0ix0fulaxo8x" path="res://Scripts/settings_canvas_layer.gd" id="4_jix8l"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jix8l"]
 font = ExtResource("2_fu7sn")
-font_size = 23
+font_size = 20
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fu7sn"]
+bg_color = Color(0.48868936, 0.6617864, 0.33992496, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_blend = true
+corner_radius_top_left = 13
+corner_radius_top_right = 13
+corner_radius_bottom_right = 13
+corner_radius_bottom_left = 13
 
 [node name="Main_Menu" type="Node"]
 script = ExtResource("1_7vrkn")
@@ -19,10 +32,10 @@ scale = Vector2(11.21852, 8.25269)
 texture = ExtResource("2_jix8l")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 76.0
-offset_top = 28.0
-offset_right = 573.0
-offset_bottom = 99.0
+offset_left = 111.0
+offset_top = 30.0
+offset_right = 535.0
+offset_bottom = 101.0
 text = "The Epic Adventure of Mask dude"
 label_settings = SubResource("LabelSettings_jix8l")
 
@@ -43,8 +56,162 @@ text = "Exit"
 
 [node name="Button3" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "FullScreen"
+text = "Settings"
+
+[node name="SettingsCanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("4_jix8l")
+
+[node name="Panel" type="Panel" parent="SettingsCanvasLayer"]
+offset_left = 70.0
+offset_top = 14.0
+offset_right = 556.0
+offset_bottom = 463.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_fu7sn")
+
+[node name="Label" type="Label" parent="SettingsCanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 189.0
+offset_top = 23.0
+offset_right = 306.0
+offset_bottom = 60.0
+text = "Settings"
+label_settings = SubResource("LabelSettings_jix8l")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsCanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 83.0
+offset_right = 454.0
+offset_bottom = 360.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsCanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="SettingsCanvasLayer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "video"
+label_settings = SubResource("LabelSettings_jix8l")
+
+[node name="FullScreenContainer" type="HBoxContainer" parent="SettingsCanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="FullscreenLabel" type="Label" parent="SettingsCanvasLayer/Panel/VBoxContainer/FullScreenContainer"]
+layout_mode = 2
+text = "Fullscreen"
+label_settings = SubResource("LabelSettings_jix8l")
+
+[node name="FullscreenCheckBox" type="CheckBox" parent="SettingsCanvasLayer/Panel/VBoxContainer/FullScreenContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+
+[node name="WindowsSizeContainer" type="HBoxContainer" parent="SettingsCanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="WindowsSizeLabel" type="Label" parent="SettingsCanvasLayer/Panel/VBoxContainer/WindowsSizeContainer"]
+layout_mode = 2
+text = "Windows Size"
+label_settings = SubResource("LabelSettings_jix8l")
+
+[node name="WindowsSizeCheckBox" type="OptionButton" parent="SettingsCanvasLayer/Panel/VBoxContainer/WindowsSizeContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+button_pressed = true
+selected = 1
+item_count = 3
+popup/item_0/text = "640 x 360"
+popup/item_0/id = 0
+popup/item_1/text = "1280 x 720"
+popup/item_1/id = 1
+popup/item_2/text = "1920 x 1080"
+popup/item_2/id = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="SettingsCanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="SettingsCanvasLayer/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "sound"
+label_settings = SubResource("LabelSettings_jix8l")
+
+[node name="SFXContainer" type="HBoxContainer" parent="SettingsCanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="SFXLabel" type="Label" parent="SettingsCanvasLayer/Panel/VBoxContainer/SFXContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SFX"
+label_settings = SubResource("LabelSettings_jix8l")
+horizontal_alignment = 1
+
+[node name="sfxSlider" type="HSlider" parent="SettingsCanvasLayer/Panel/VBoxContainer/SFXContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = -50.0
+max_value = 5.0
+step = 10.0
+value = -10.0
+
+[node name="musicContainer2" type="HBoxContainer" parent="SettingsCanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="SFXLabel" type="Label" parent="SettingsCanvasLayer/Panel/VBoxContainer/musicContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Music"
+label_settings = SubResource("LabelSettings_jix8l")
+horizontal_alignment = 1
+
+[node name="musicSlider" type="HSlider" parent="SettingsCanvasLayer/Panel/VBoxContainer/musicContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = -50.0
+max_value = 5.0
+step = 10.0
+value = -10.0
+
+[node name="masterContainer3" type="HBoxContainer" parent="SettingsCanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="SFXLabel" type="Label" parent="SettingsCanvasLayer/Panel/VBoxContainer/masterContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Master"
+label_settings = SubResource("LabelSettings_jix8l")
+horizontal_alignment = 1
+
+[node name="masterSlider" type="HSlider" parent="SettingsCanvasLayer/Panel/VBoxContainer/masterContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = -50.0
+max_value = 5.0
+step = 10.0
+value = -10.0
+
+[node name="Button" type="Button" parent="SettingsCanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 174.0
+offset_top = 379.0
+offset_right = 290.0
+offset_bottom = 410.0
+text = "Accept"
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="SettingsCanvasLayer/Panel/VBoxContainer/FullScreenContainer/FullscreenCheckBox" to="SettingsCanvasLayer" method="_on_fullscreen_check_box_pressed"]
+[connection signal="item_selected" from="SettingsCanvasLayer/Panel/VBoxContainer/WindowsSizeContainer/WindowsSizeCheckBox" to="SettingsCanvasLayer" method="_on_windows_size_check_box_item_selected"]
+[connection signal="value_changed" from="SettingsCanvasLayer/Panel/VBoxContainer/SFXContainer/sfxSlider" to="SettingsCanvasLayer" method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="SettingsCanvasLayer/Panel/VBoxContainer/musicContainer2/musicSlider" to="SettingsCanvasLayer" method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="SettingsCanvasLayer/Panel/VBoxContainer/masterContainer3/masterSlider" to="SettingsCanvasLayer" method="_on_master_slider_value_changed"]
+[connection signal="pressed" from="SettingsCanvasLayer/Panel/Button" to="SettingsCanvasLayer" method="_on_button_pressed"]

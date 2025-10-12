@@ -4,7 +4,12 @@ const SAVEFILE = "user://SAVEFILE.save"
 
 var game_data = {
 	"lifes": 3,
-	"health" : 10
+	"health" : 10,
+	"fullscreen_on": true,
+	"screen_res": 1,
+	"sfx_vol": -10,
+	"music_vol": -10,
+	"master_vol" :-10
 }
 
 func _ready():
@@ -15,7 +20,15 @@ func load_data():
 	if file == null:
 		save_data()
 	else:
-		game_data = file.get_var()
+		var data_saved = file.get_var()
+		
+		for data in game_data.keys():
+			if !data_saved.keys().has(data):
+				data_saved[data] = game_data[data]
+				
+			
+		game_data = data_saved
+		save_data()
 		file.close()  
 
 
