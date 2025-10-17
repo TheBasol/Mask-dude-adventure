@@ -479,3 +479,5 @@ position = Vector2(2447, 537)
 [node name="FallDamage2" parent="FallDamageContainer" instance=ExtResource("12_7yui6")]
 position = Vector2(1919, 535)
 scale = Vector2(1.6799951, 1)
+
+[editable path="Player"]

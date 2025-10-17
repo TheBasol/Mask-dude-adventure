@@ -19,13 +19,20 @@ func state_enter_state(msg := {}):
 	player.canDash = false
 	
 func state_physics_process(delta):
+	var direction = Input.get_axis("ui_left","ui_right")
+	player.sprite_2d.flip_h = direction < 0 if direction != 0 else player.sprite_2d.flip_h
+	
+	if direction != 0:
+		player.wall_ray_cast_top.target_position.x = player.wall_ray_cast_top.target_position.x * direction
+		player.wall_ray_cast_bottom.target_position.x = player.wall_ray_cast_bottom.target_position.x * direction
+	
 	player.move_and_slide()
 
 
 func _on_dash_timer_timeout() -> void:
 	if player.is_on_floor():
 		state_machine.transition_to("Idle")
-	elif player.is_on_wall():
+	elif player.is_on_valid_wall(): 
 		state_machine.transition_to("WallSlide")
 	elif !player.is_on_floor():
 		state_machine.transition_to("InAir")

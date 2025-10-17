@@ -21,6 +21,8 @@ var health := 10 :
 @onready var state_machine: StateMachine = $StateMachine
 @onready var gui_animation_player: AnimationPlayer = $PlayerGUI/AnimationPlayer
 @onready var lifes_ui: Label = $PlayerGUI/HBoxContainer2/Lifes
+@onready var wall_ray_cast_top: RayCast2D = $WallSlide/WallRayCastTop
+@onready var wall_ray_cast_bottom: RayCast2D = $WallSlide/WallRayCastBottom
 
 
 
@@ -61,7 +63,9 @@ func dead():
 		
 	Save.save_data()
 		
-
+func is_on_valid_wall() -> bool:
+	# Retorna true solo si ambos rayos están colisionando
+	return wall_ray_cast_top.is_colliding() and wall_ray_cast_bottom.is_colliding()
 
 func transition_to_scene(scene:String):
 	gui_animation_player.play("Transition_Anim")
