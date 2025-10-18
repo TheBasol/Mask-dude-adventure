@@ -1,6 +1,6 @@
 extends PlayerState
 
-var dashSpeed = 400
+var dashSpeed = 300
 
 func state_enter_state(msg := {}):
 	

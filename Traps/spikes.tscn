@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5ld5s45w47ay"]
+
+[ext_resource type="Script" uid="uid://hvregqg6ky4h" path="res://Scripts/spikes.gd" id="1_gkjis"]
+[ext_resource type="Texture2D" uid="uid://b7ulpnpbw4u2f" path="res://assets/Traps/Spikes/Idle.png" id="2_pd7vg"]
+[ext_resource type="PackedScene" uid="uid://cenpghno1h84e" path="res://Traps/dmg_player.tscn" id="3_enb5g"]
+
+[node name="spikes" type="Node2D"]
+script = ExtResource("1_gkjis")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 4)
+scale = Vector2(1.8998431, 1.3680538)
+texture = ExtResource("2_pd7vg")
+
+[node name="dmgPlayer" parent="." instance=ExtResource("3_enb5g")]
+position = Vector2(-1, 9)
+scale = Vector2(1, 0.44000018)
+dmg = 2
