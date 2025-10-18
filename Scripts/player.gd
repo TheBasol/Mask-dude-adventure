@@ -56,14 +56,14 @@ func takeDamage(dmg):
 	
 func dead():
 	Global.lifes -= 1
-	Global.health = 10
 	if  Global.lifes <= 0:
 		Global.lifes = 3
-		Global.health = 10
-		Global.fruits = 0
 		get_tree().call_deferred("change_scene_to_file","res://main_menu.tscn")
 	else:
 		get_tree().call_deferred("reload_current_scene")
+		
+	Global.fruits = 0
+	Global.health = 10
 		
 	Save.save_data()
 		

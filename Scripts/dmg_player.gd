@@ -4,4 +4,7 @@ extends Area2D
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("AreaPlayer"):
-		area.owner.takeDamage(dmg)
+		var player = area.owner
+		if player.invincibility_timer.is_stopped():
+			player.state_machine.transition_to("Hurt")
+			player.takeDamage(dmg)
