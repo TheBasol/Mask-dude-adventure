@@ -245,7 +245,6 @@ libraries = {
 script = ExtResource("3_tok1r")
 
 [node name="PlayerGUI" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PlayerGUI"]
 offset_top = 31.0
@@ -388,5 +387,10 @@ position = Vector2(1, 13)
 target_position = Vector2(18, 0)
 collision_mask = 4
 
+[node name="InvincibilityTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/TakeDamage" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="StateMachine/Dash/DashTimer" to="StateMachine/Dash" method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

@@ -23,6 +23,7 @@ var health := 10 :
 @onready var lifes_ui: Label = $PlayerGUI/HBoxContainer2/Lifes
 @onready var wall_ray_cast_top: RayCast2D = $WallSlide/WallRayCastTop
 @onready var wall_ray_cast_bottom: RayCast2D = $WallSlide/WallRayCastBottom
+@onready var invincibility_timer: Timer = $InvincibilityTimer
 
 
 
@@ -31,6 +32,7 @@ func _ready() -> void:
 	$PlayerGUI/ProgressBar.value = health
 	fruits_2.text = str(Global.fruits)
 	lifes_ui.text = "x"+str(Global.lifes)
+	
 	gui_animation_player.play("Transition_Anim")
 	Global.player = self
 
@@ -54,6 +56,7 @@ func takeDamage(dmg):
 	
 func dead():
 	Global.lifes -= 1
+	Global.health = 10
 	if  Global.lifes <= 0:
 		Global.lifes = 3
 		Global.health = 10
@@ -77,3 +80,9 @@ func transition_to_scene(scene:String):
 
 func updateUiFruits():
 	fruits_2.text = str(Global.fruits)
+
+
+func _on_invincibility_timer_timeout() -> void:
+	print("Invencibilidad terminada")
+	area_to_take_damage.set_deferred("disabled", false)
+	sprite_2d.modulate.a = 1.0
