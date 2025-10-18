@@ -71,10 +71,6 @@ func is_on_valid_wall() -> bool:
 	return wall_ray_cast_top.is_colliding() and wall_ray_cast_bottom.is_colliding()
 
 func transition_to_scene(scene:String):
-	gui_animation_player.play("Transition_Anim")
-	get_tree().paused = true
-	await (gui_animation_player.animation_finished)
-	get_tree().paused = false
 	get_tree().call_deferred("change_scene_to_file",scene)
 
 

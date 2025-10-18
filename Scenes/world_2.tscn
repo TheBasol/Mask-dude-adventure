@@ -583,7 +583,7 @@ position = Vector2(-254, 339)
 
 [node name="TargetEnd" parent="." instance=ExtResource("13_0sdjl")]
 position = Vector2(2019, 397)
-nextLevel = "res://main_menu.tscn"
+nextLevel = "res://Scripts/end_menu.tscn"
 
 [editable path="Player"]
 [editable path="Traps/Saw"]

@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnptvf2jxa3q6"]
+
+[ext_resource type="Script" uid="uid://bj1ej0gpo4yl3" path="res://Scripts/end_menu.gd" id="1_wtx3d"]
+[ext_resource type="Texture2D" uid="uid://dpi8bqqmoiw8h" path="res://assets/Background/Green.png" id="2_8logn"]
+[ext_resource type="FontFile" uid="uid://6kevsfysjxx2" path="res://assets/Fonts/NokiaCellphoneFC.ttf" id="3_lrcn4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_punm7"]
+font = ExtResource("3_lrcn4")
+font_size = 34
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="End_menu" type="Node"]
+script = ExtResource("1_wtx3d")
+
+[node name="Green" type="Sprite2D" parent="."]
+position = Vector2(311, 240)
+scale = Vector2(11.21852, 8.25269)
+texture = ExtResource("2_8logn")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 134.0
+offset_top = 227.0
+offset_right = 558.0
+offset_bottom = 298.0
+text = "Thanks to Play!!!"
+label_settings = SubResource("LabelSettings_punm7")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -7,4 +7,5 @@ func _on_body_entered(body: Node2D) -> void:
 		Global.health = body.health
 		if nextLevel.contains("menu"):
 			Global.health = 10
+			Global.lifes = 3
 		body.transition_to_scene(nextLevel)
