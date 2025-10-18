@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://i3nhww6cp7ir"]
+
+[ext_resource type="Script" uid="uid://bdcaucd7x3ryw" path="res://Scripts/settings_menu.gd" id="1_05uyy"]
+[ext_resource type="Texture2D" uid="uid://dpi8bqqmoiw8h" path="res://assets/Background/Green.png" id="2_p81d2"]
+[ext_resource type="FontFile" uid="uid://6kevsfysjxx2" path="res://assets/Fonts/NokiaCellphoneFC.ttf" id="3_2nc7s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jix8l"]
+font = ExtResource("3_2nc7s")
+font_size = 40
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Settings_Menu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_05uyy")
+
+[node name="Green" type="Sprite2D" parent="."]
+position = Vector2(322, 243)
+scale = Vector2(11.21852, 8.25269)
+texture = ExtResource("2_p81d2")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 222.0
+offset_top = 76.0
+offset_right = 646.0
+offset_bottom = 147.0
+text = "Settings"
+label_settings = SubResource("LabelSettings_jix8l")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 137.0
+offset_top = 193.00002
+offset_right = 378.65118
+offset_bottom = 332.97455
+scale = Vector2(1.477336, 1.4502635)
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Continue"
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

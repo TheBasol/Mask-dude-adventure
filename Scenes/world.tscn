@@ -534,16 +534,28 @@ scale = Vector2(1.6799951, 1)
 [node name="Saw" parent="Traps" instance=ExtResource("13_c5t2i")]
 position = Vector2(564, 333)
 
+[node name="dmgPlayer" parent="Traps/Saw/trueSaw" index="1"]
+dmg = 3
+
 [node name="Saw2" parent="Traps" instance=ExtResource("13_c5t2i")]
 position = Vector2(851, 367)
 platformSpeed = 0.4
 
+[node name="dmgPlayer" parent="Traps/Saw2/trueSaw" index="1"]
+dmg = 3
+
 [node name="Saw3" parent="Traps" instance=ExtResource("13_c5t2i")]
 position = Vector2(1483, 434)
+
+[node name="dmgPlayer" parent="Traps/Saw3/trueSaw" index="1"]
+dmg = 3
 
 [node name="Saw4" parent="Traps" instance=ExtResource("13_c5t2i")]
 position = Vector2(2150, 400)
 platformSpeed = 0.4
+
+[node name="dmgPlayer" parent="Traps/Saw4/trueSaw" index="1"]
+dmg = 3
 
 [node name="Saw5" parent="Traps" instance=ExtResource("13_c5t2i")]
 position = Vector2(2677, 345)
@@ -585,6 +597,10 @@ rotation = 2.0344439
 position = Vector2(990, 400)
 
 [editable path="Player"]
+[editable path="Traps/Saw"]
+[editable path="Traps/Saw2"]
+[editable path="Traps/Saw3"]
+[editable path="Traps/Saw4"]
 [editable path="Traps/Saw5"]
 [editable path="Traps/Saw6"]
 [editable path="Traps/Saw7"]
