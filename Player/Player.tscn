@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://vcwd04l1skbv"]
+[gd_scene load_steps=38 format=3 uid="uid://vcwd04l1skbv"]
 
 [ext_resource type="Texture2D" uid="uid://bei7x67psb4c4" path="res://assets/Main Characters/Mask Dude.png" id="1_3qydi"]
 [ext_resource type="Script" uid="uid://6lwpqb3e6rmq" path="res://Scripts/player.gd" id="1_q3lat"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://dwlg7theqc24w" path="res://Scripts/StateMachine/wall_slide.gd" id="11_v0k0e"]
 [ext_resource type="Script" uid="uid://fo0h86bfcl82" path="res://Scripts/StateMachine/wall_jump.gd" id="12_5wa8t"]
 [ext_resource type="Script" uid="uid://b81r1tpgpdyf1" path="res://Scripts/StateMachine/dash.gd" id="16_7v5gs"]
+[ext_resource type="AudioStream" uid="uid://cixsgvgcfukie" path="res://assets/Sounds/Forest Theme - D Minor - Jordan Ottesen.mp3" id="19_d7xyo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q3lat"]
 size = Vector2(19, 26)
@@ -388,8 +389,14 @@ target_position = Vector2(18, 0)
 collision_mask = 4
 
 [node name="InvincibilityTimer" type="Timer" parent="."]
-wait_time = 0.4
+wait_time = 0.6
 one_shot = true
+
+[node name="AudioStreamBackground" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_d7xyo")
+volume_db = -12.403
+autoplay = true
+bus = &"Music"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/TakeDamage" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="StateMachine/Dash/DashTimer" to="StateMachine/Dash" method="_on_dash_timer_timeout"]

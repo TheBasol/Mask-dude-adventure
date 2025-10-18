@@ -402,7 +402,7 @@ scale = Vector2(1, 1.0863879)
 texture = ExtResource("6_ikia7")
 
 [node name="Player" parent="." instance=ExtResource("1_a02cp")]
-position = Vector2(2277, 351.00003)
+position = Vector2(263, 389)
 scale = Vector2(1.3106391, 1.423443)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -582,7 +582,7 @@ position = Vector2(45, 27)
 rotation = 2.0344439
 
 [node name="spikes" parent="Traps" instance=ExtResource("14_e0ngr")]
-position = Vector2(1404, 461)
+position = Vector2(990, 400)
 
 [editable path="Player"]
 [editable path="Traps/Saw5"]

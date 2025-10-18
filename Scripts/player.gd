@@ -60,6 +60,7 @@ func dead():
 	if  Global.lifes <= 0:
 		Global.lifes = 3
 		Global.health = 10
+		Global.fruits = 0
 		get_tree().call_deferred("change_scene_to_file","res://main_menu.tscn")
 	else:
 		get_tree().call_deferred("reload_current_scene")
@@ -67,7 +68,6 @@ func dead():
 	Save.save_data()
 		
 func is_on_valid_wall() -> bool:
-	# Retorna true solo si ambos rayos están colisionando
 	return wall_ray_cast_top.is_colliding() and wall_ray_cast_bottom.is_colliding()
 
 func transition_to_scene(scene:String):
@@ -79,6 +79,5 @@ func updateUiFruits():
 
 
 func _on_invincibility_timer_timeout() -> void:
-	print("Invencibilidad terminada")
 	area_to_take_damage.set_deferred("disabled", false)
 	sprite_2d.modulate.a = 1.0
