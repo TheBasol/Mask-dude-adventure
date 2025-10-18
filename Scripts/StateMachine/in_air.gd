@@ -48,7 +48,7 @@ func state_physics_process(delta):
 	elif !$CoyoteTimer.is_stopped() and Input.is_action_just_pressed("ui_accept") and player.jumpsNumber > 0:
 		print("coyote")
 		state_machine.transition_to("InAir",{Jump = true})
-	elif player.is_on_valid_wall(): 
+	elif player.is_on_valid_wall() and Input.is_action_just_pressed("grab"): 
 		state_machine.transition_to("WallSlide")
 
 	elif Input.is_action_just_pressed("ui_accept"):

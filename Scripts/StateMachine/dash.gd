@@ -32,7 +32,7 @@ func state_physics_process(delta):
 func _on_dash_timer_timeout() -> void:
 	if player.is_on_floor():
 		state_machine.transition_to("Idle")
-	elif player.is_on_valid_wall(): 
+	elif player.is_on_valid_wall() and Input.is_action_just_pressed("grab"): 
 		state_machine.transition_to("WallSlide")
 	elif !player.is_on_floor():
 		state_machine.transition_to("InAir")

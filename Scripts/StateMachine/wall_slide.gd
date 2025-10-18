@@ -5,7 +5,7 @@ func state_enter_state(msg := {}):
 	anim_player.play("walkslide")
 	
 func state_physics_process(delta):
-	player.velocity.y += player.gravity*0.5
+	player.velocity.y += player.gravity*0.3
 	var direction = Input.get_axis("ui_left","ui_right")
 	player.velocity.x = direction * player.speed
 	
